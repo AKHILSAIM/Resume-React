@@ -51,7 +51,10 @@ app.post('/api/resume', async (req, res) => {
     res.json({ message: 'Resume saved successfully' });
   } catch (err) {
     console.error('SAVE ERROR:', err);
-    res.status(500).json({ error: 'Error saving resume' });
+   res.status(500).json({
+     error: 'Error saving resume',
+     details: err.message
+});
   }
 });
 
@@ -86,7 +89,10 @@ app.get('/api/resume', async (req, res) => {
     });
   } catch (err) {
     console.error('FETCH ERROR:', err);
-    res.status(500).json({ error: 'Error fetching resume' });
+    res.status(500).json({
+      error: 'Error fetching resume',
+      details: err.message
+});
   }
 });
 
