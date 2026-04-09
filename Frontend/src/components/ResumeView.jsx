@@ -11,7 +11,7 @@ function ResumeView() {
 
   const loadResume = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/resume');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/resume`);
       setFetchedResume(response.data);
     } catch (error) {
       console.error(error);
