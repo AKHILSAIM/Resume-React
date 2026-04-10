@@ -62,16 +62,24 @@ function ResumeForm() {
     }));
   };
 
-  const saveResume = async () => {
-    try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/resume`, resumeData);
-      alert('Resume saved successfully');
-      navigate('/view');
-    } catch (error) {
-      console.error(error);
-      alert('Error saving resume');
-    }
-  };
+ const saveResume = async () => {
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/resume`,
+      resumeData
+    );
+    alert(response.data.message);
+    navigate('/view');
+  } catch (error) {
+    console.error('Save error:', error);
+    console.error('Backend response:', error.response?.data);
+    alert(
+      error.response?.data?.details ||
+      error.response?.data?.error ||
+      'Error saving resume'
+    );
+  }
+};
 
   return (
     <div className="container">
